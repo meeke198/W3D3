@@ -110,22 +110,27 @@ end
 
 def bsearch(arr, target)
     return nil if arr.empty?
+
     pivot = arr.length / 2
     if (target <=> arr[pivot]) == -1
         bsearch(arr.take(pivot), target)
     elsif (target <=> arr[pivot]) == 0
         return pivot
-    end
-        bsearch(arr.drop(pivot), target)
-        
+    else
+        second_search = bsearch(arr.drop(pivot + 1), target)
+        if second_search.nil?
+            return nil
+        else
+            second_search + (pivot + 1)
+        end
     end
     
 end
+p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
 
 p bsearch([1, 2, 3], 1) # => 0
 p bsearch([2, 3, 4, 5], 3) # => 1
 p bsearch([2, 4, 6, 8, 10], 6) # => 2
 p bsearch([1, 3, 4, 5, 9], 5) # => 3
-p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
 p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
 p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
