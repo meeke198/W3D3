@@ -39,6 +39,83 @@ def exp_2(base, exp)
        base * (exp_2(base, (exp - 1) / 2) ** 2) 
     end
 end
-p exp_2(2,8)
-p exp_2(2,7)
+# p exp_2(2,8)
+# p exp_2(2,7)
+
 #deep dup
+class Array
+    def deep_dup
+        self.map do |ele| 
+            if ele.is_a?(Array)
+                ele.deep_dup
+            else
+                ele
+            end
+        end
+        # copy = []
+        # self.each do |ele|
+        #     if ele.is_a?(Array)
+        #         copy << ele.deep_dup
+        #     else
+        #         copy << ele
+        #     end
+        # end
+        # copy
+    end
+end
+#org = out arr with different id, but inner arr is the same 
+#cpy = out arr with different id 
+
+# a = [1,2,[3,4]]
+# a_copy = a.deep_dup
+# p a
+# a_copy[2] << 9
+# p a
+# p a_copy
+
+
+# arr = [
+#   ["nuts", "bolts", "washers"],
+#   ["capacitors", "resistors", "inductors"]
+# ]
+# p arr
+# a_copy = arr.dup
+# # p arr.object_id
+# # p arr[0].object_id
+# # p arr[1].object_id
+# # p "_____"
+# # p a_copy.object_id
+# # p a_copy[0].object_id
+# # p a_copy[1].object_id
+# # p "________"
+# a_copy[1] << "LEDs"
+# # p "________"
+# # p arr.object_id
+# # p arr[0].object_id
+# # p arr[1].object_id
+# # p "_____"
+# # p a_copy.object_id
+# # p a_copy[0].object_id
+# # p a_copy[1].object_id
+# p arr
+# p a_copy
+
+def fib(n)
+    return [1] if n == 1
+    return [1, 1] if n == 2
+    prev = fib(n - 1)
+    prev << prev[-2] + prev[-1]
+end
+# p fib(5)
+
+def b_search
+    
+end
+
+bsearch([1, 2, 3], 1) # => 0
+bsearch([2, 3, 4, 5], 3) # => 1
+bsearch([2, 4, 6, 8, 10], 6) # => 2
+bsearch([1, 3, 4, 5, 9], 5) # => 3
+bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
